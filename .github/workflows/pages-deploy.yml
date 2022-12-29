@@ -21,6 +21,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: yarn build-storybook-docs
+    - uses: actions/upload-artifact@master
+      with:
+        name: page
+        path: build
+        if-no-files-found: error
+
   # Single deploy job since we're just deploying
   deploy:
     environment:
@@ -36,7 +47,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './storybook-static'
+          path: './docs-page'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

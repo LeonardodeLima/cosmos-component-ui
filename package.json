@@ -9,7 +9,7 @@
     "test:ci": "jest --ci --maxWorkers=2 --collectCoverage",
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook-docs": "build-storybook -o docs-page"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
