@@ -6,6 +6,7 @@
   "module": "dist/esm/index.js",
   "scripts": {
     "test": "jest",
+    "test:ci": "jest --ci --maxWorkers=2 --collectCoverage",
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
