@@ -50,8 +50,7 @@ jobs:
           command: yarn --no-audit --prefer-offline
       - name: Build
         run: yarn build-storybook-docs
-
-      - uses: actions/checkout@v3
+      - name: Upload artifact
       - run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DEMSCRIPTEN=ON
       - run: cmake --build build --config ${{env.BUILD_TYPE}}
       - uses: actions/upload-artifact@master
