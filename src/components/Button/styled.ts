@@ -1,35 +1,51 @@
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ButtonProps } from "./types";
+import { theme as defaultTheme } from "@tokens";
 
 export const StyledButton = styled.button<ButtonProps>`
-  border: 0;
-  line-height: 1;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 700;
-  font-weight: bold;
-  border-radius: 3px;
-  display: inline-block;
-  padding: ${(props) =>
-    props.size === "small"
-      ? "7px 25px 8px"
-      : props.size === "medium"
-      ? "9px 30px 11px"
-      : "14px 30px 16px"};
-  color: #ffffff;
-  background-color: ${(props) => (props.primary ? "#008BF5" : "#38618C")};
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  &:hover {
-    background-color: ${(props) => (props.primary ? "#007FE0" : "#5083B9")};
-  }
-  &:active {
-    border: solid 2px #007FE0;
-    padding: ${(props) =>
-      props.size === "small"
-        ? "5px 23px 6px"
-        : props.size === "medium"
-        ? "7px 28px 9px"
-        : "12px 28px 14px"};
-  }
+  ${({ theme, primary, size, disabled }) => {
+   
+    const activeTheme = theme?.colors ? theme : defaultTheme;
+    const { space, colors, typography, radius, motion } = activeTheme;
+    
+    return css`
+      border: 0;
+      line-height: ${typography.lineHeight.tight};
+      font-family: ${typography.fontFamily.sans};
+      font-size: ${size === "small"
+        ? typography.fontSize.sm
+        : typography.fontSize.md};
+      cursor: pointer;
+      font-weight: ${typography.fontWeight.bold};
+      border-radius: ${radius.sm};
+      display: inline-block;
+      transition: all ${motion.duration.fast} ${motion.easing.easeInOut};
+      
+      padding: ${size === "small"
+        ? `${space['2xs']} ${space.lg}`
+        : size === "medium"
+        ? `${space.xs} ${space.xl}`
+        : `${space.sm} ${space.xl}`};
+      
+      color: ${primary ? colors.text.inverse : colors.text.primary};
+      background-color: ${primary ? colors.brand.default : colors.neutral.bgSunken};
+      opacity: ${disabled ? 0.5 : 1};
+
+      &:hover {
+        background-color: ${primary ? colors.brand.hover : colors.neutral.bgElevated};
+      }
+
+      &:active {
+        background-color: ${primary ? colors.brand.active : colors.neutral.bgSunken};
+        transform: scale(0.98);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: ${colors.interactive.disabled};
+        color: ${colors.text.disabled};
+      }
+    `;
+  }}
 `;
