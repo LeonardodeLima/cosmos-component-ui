@@ -5,16 +5,27 @@ on:
     types: [created]
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - uses: actions/checkout@v3
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm publish
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build package
+        run: yarn build
+
+      - name: Publish to GitHub Packages
+        run: npm publish
         env:
-          GIT_AUTH_TOKEN: ${{ secrets.GITENV_COSMOS }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
