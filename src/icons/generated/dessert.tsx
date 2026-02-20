@@ -1,0 +1,68 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { useCallback, useState } from 'react'
+
+const variants = {
+  normal: { pathLength: 1, opacity: 1 },
+  animate: {
+    pathLength: [0, 1],
+    opacity: [0, 1],
+    transition: { duration: 0.4, ease: 'easeOut' },
+  },
+}
+
+const DessertIcon = ({ size = 24, color = 'currentColor', strokeWidth = 2, className }) => {
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const handleMouseEnter = useCallback(() => {
+    if (!isAnimating) setIsAnimating(true)
+  }, [isAnimating])
+
+  const handleAnimationComplete = useCallback(() => {
+    setIsAnimating(false)
+  }, [])
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      style={{ display: 'inline-flex', cursor: 'pointer' }}
+      className={className}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+      <motion.path
+        d="M10.162 3.167A10 10 0 0 0 2 13a2 2 0 0 0 4 0v-1a2 2 0 0 1 4 0v4a2 2 0 0 0 4 0v-4a2 2 0 0 1 4 0v1a2 2 0 0 0 4-.006 10 10 0 0 0-8.161-9.826"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        onAnimationComplete={handleAnimationComplete}
+      />
+      <motion.path
+        d="M20.804 14.869a9 9 0 0 1-17.608 0"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={1}
+      />
+      <motion.circle
+        cx="12" cy="4" r="2"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={2}
+      />
+      </svg>
+    </div>
+  )
+}
+
+export { DessertIcon }

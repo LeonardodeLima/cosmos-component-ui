@@ -1,0 +1,75 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { useCallback, useState } from 'react'
+
+const variants = {
+  normal: { pathLength: 1, opacity: 1 },
+  animate: {
+    pathLength: [0, 1],
+    opacity: [0, 1],
+    transition: { duration: 0.4, ease: 'easeOut' },
+  },
+}
+
+const RadiationIcon = ({ size = 24, color = 'currentColor', strokeWidth = 2, className }) => {
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const handleMouseEnter = useCallback(() => {
+    if (!isAnimating) setIsAnimating(true)
+  }, [isAnimating])
+
+  const handleAnimationComplete = useCallback(() => {
+    setIsAnimating(false)
+  }, [])
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      style={{ display: 'inline-flex', cursor: 'pointer' }}
+      className={className}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+      <motion.path
+        d="M12 12h.01"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        onAnimationComplete={handleAnimationComplete}
+      />
+      <motion.path
+        d="M14 15.4641a4 4 0 0 1-4 0L7.52786 19.74597 A 1 1 0 0 0 7.99303 21.16211 10 10 0 0 0 16.00697 21.16211 1 1 0 0 0 16.47214 19.74597z"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={1}
+      />
+      <motion.path
+        d="M16 12a4 4 0 0 0-2-3.464l2.472-4.282a1 1 0 0 1 1.46-.305 10 10 0 0 1 4.006 6.94A1 1 0 0 1 21 12z"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={2}
+      />
+      <motion.path
+        d="M8 12a4 4 0 0 1 2-3.464L7.528 4.254a1 1 0 0 0-1.46-.305 10 10 0 0 0-4.006 6.94A1 1 0 0 0 3 12z"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={3}
+      />
+      </svg>
+    </div>
+  )
+}
+
+export { RadiationIcon }

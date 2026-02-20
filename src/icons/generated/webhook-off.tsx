@@ -1,0 +1,96 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { useCallback, useState } from 'react'
+
+const variants = {
+  normal: { pathLength: 1, opacity: 1 },
+  animate: {
+    pathLength: [0, 1],
+    opacity: [0, 1],
+    transition: { duration: 0.4, ease: 'easeOut' },
+  },
+}
+
+const WebhookOffIcon = ({ size = 24, color = 'currentColor', strokeWidth = 2, className }) => {
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const handleMouseEnter = useCallback(() => {
+    if (!isAnimating) setIsAnimating(true)
+  }, [isAnimating])
+
+  const handleAnimationComplete = useCallback(() => {
+    setIsAnimating(false)
+  }, [])
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      style={{ display: 'inline-flex', cursor: 'pointer' }}
+      className={className}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+      <motion.path
+        d="M17 17h-5c-1.09-.02-1.94.92-2.5 1.9A3 3 0 1 1 2.57 15"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        onAnimationComplete={handleAnimationComplete}
+      />
+      <motion.path
+        d="M9 3.4a4 4 0 0 1 6.52.66"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={1}
+      />
+      <motion.path
+        d="m6 17 3.1-5.8a2.5 2.5 0 0 0 .057-2.05"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={2}
+      />
+      <motion.path
+        d="M20.3 20.3a4 4 0 0 1-2.3.7"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={3}
+      />
+      <motion.path
+        d="M18.6 13a4 4 0 0 1 3.357 3.414"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={4}
+      />
+      <motion.path
+        d="m12 6 .6 1"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={5}
+      />
+      <motion.path
+        d="m2 2 20 20"
+        variants={variants}
+        animate={isAnimating ? 'animate' : 'normal'}
+        
+          custom={6}
+      />
+      </svg>
+    </div>
+  )
+}
+
+export { WebhookOffIcon }
