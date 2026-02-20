@@ -1,11 +1,10 @@
-# Cosmos Component UI
+# Cosmos UI
 
 Uma biblioteca de componentes de interface moderna, resiliente e acessível para aplicações **React**. 
 
 O **Cosmos** foi projetado para acelerar o desenvolvimento de interfaces consistentes, focando na simplicidade de uso e alta performance.
 
-
-## 📦 Instalação
+## Instalação
 
 Escolha o gerenciador de pacotes de sua preferência:
 
@@ -18,3 +17,7 @@ npm install @LeonardodeLima/cosmos-component-ui@0.0.2
 ```bash
 yarn add @LeonardodeLima/cosmos-component-ui@0.0.2
 ```
+
+##  Documentação
+
+Acesse a documentação do  [CosmoUI](https://leonardodelima.github.io/cosmos-component-ui/)
