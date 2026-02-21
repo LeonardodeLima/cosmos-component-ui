@@ -1,6 +1,6 @@
 import React from "react";
 import { InputProps } from "./types";
-import { StyledLabel, StyledText, StyledInput, StyledMessage } from "./styled"
+import { StyledWrapper, StyledLabel, StyledInput, StyledMessage } from "./styled";
 
 const Input: React.FC<InputProps> = ({
   id,
@@ -14,12 +14,13 @@ const Input: React.FC<InputProps> = ({
   ...props
 }) => {
   return (
-    <>
-      <StyledLabel>
-        <StyledText disabled={disabled} error={error}>
+    <StyledWrapper>
+      {label && (
+        <StyledLabel htmlFor={id} disabled={disabled}>
           {label}
-        </StyledText>
-      </StyledLabel>
+        </StyledLabel>
+      )}
+
       <StyledInput
         id={id}
         type="text"
@@ -28,12 +29,22 @@ const Input: React.FC<InputProps> = ({
         error={error}
         success={success}
         placeholder={placeholder}
+        aria-invalid={error ? "true" : undefined}
+        aria-describedby={message ? `${id}-message` : undefined}
         {...props}
-      ></StyledInput>
-      <StyledMessage>
-        <StyledText error={error}>{message}</StyledText>
-      </StyledMessage>
-    </>
+      />
+
+      {message && (
+        <StyledMessage
+          id={`${id}-message`}
+          error={error}
+          success={success}
+          role={error ? "alert" : undefined}
+        >
+          {message}
+        </StyledMessage>
+      )}
+    </StyledWrapper>
   );
 };
 
