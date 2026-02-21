@@ -1,8 +1,16 @@
 import React from "react";
 import { ButtonProps } from "./types";
-import { StyledButton } from "./styled"
+import { StyledButton, BtnText } from "./styled";
 
-const Button: React.FC<ButtonProps> = ({ text, primary, disabled, size, onClick, ...props }) => {
+const Button: React.FC<ButtonProps> = ({
+  text,
+  primary,
+  disabled,
+  size,
+  variant = "default",
+  onClick,
+  ...props
+}) => {
   return (
     <StyledButton
       type="button"
@@ -10,9 +18,11 @@ const Button: React.FC<ButtonProps> = ({ text, primary, disabled, size, onClick,
       primary={primary}
       disabled={disabled}
       size={size}
+      variant={variant}
+      data-text={variant === "glitch" ? text : undefined}
       {...props}
     >
-      {text}
+      {variant === "glitch" ? <BtnText>{text}</BtnText> : text}
     </StyledButton>
   );
 };

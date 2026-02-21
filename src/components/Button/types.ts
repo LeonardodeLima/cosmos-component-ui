@@ -4,5 +4,6 @@ export interface ButtonProps {
   primary?: boolean;
   disabled?: boolean;
   size?: "small" | "medium" | "large";
+  variant?: "default" | "glitch";
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
