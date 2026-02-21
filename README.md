@@ -1,3 +1,4 @@
+# <p align="center"><img src="https://github.com/user-attachments/assets/39f852e4-dd12-4202-805b-d782ff41a0dc" alt="cosmos" width="660" height="600"/></p>
 # Cosmos UI
 
 Uma biblioteca de componentes de interface moderna, resiliente e acessível para aplicações **React**. 
