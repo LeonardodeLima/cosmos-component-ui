@@ -150,7 +150,7 @@ const Catalogue = ({ size, color, strokeWidth }: CatalogueProps) => {
 }
 
 const meta: Meta<typeof Catalogue> = {
-  title: 'Icons',
+  title: 'Components/Icons',
   component: Catalogue,
   parameters: {
     layout: 'fullscreen',

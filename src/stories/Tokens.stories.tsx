@@ -42,6 +42,7 @@ const styles = {
     marginTop: '6px',
   },
   value: {
+    marginTop: '12px',
     fontSize: '11px',
     color: '#a0aabb',
     fontFamily: "'JetBrains Mono', monospace",
@@ -308,7 +309,7 @@ const MotionDoc = () => (
 )
 
 const meta: Meta = {
-  title: 'Tokens',
+  title: 'Unidades/Tokens',
   parameters: {
     layout: 'fullscreen',
     docs: { page: null },
