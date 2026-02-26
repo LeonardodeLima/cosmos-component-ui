@@ -35,4 +35,4 @@ const cosmosTheme = create({
   inputBorderRadius: 4,
 });
 
-addons.setConfig({ theme: cosmosTheme });
+addons.setConfig({ theme: cosmosTheme, panelPosition: 'right' });
