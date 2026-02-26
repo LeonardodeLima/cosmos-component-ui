@@ -38,7 +38,7 @@
     "@types/jest": "^27.0.3",
     "@types/react": "18",
     "@types/react-dom": "18",
-    "@types/styled-components": "^5.1.19",
+    "@types/styled-components": "^5.1.25",
     "babel-loader": "8",
     "jest": "^28.1.2",
     "jest-environment-jsdom": "^28.1.2",
