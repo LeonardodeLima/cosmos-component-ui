@@ -2,29 +2,45 @@ const path = require('path');
 
 module.exports = {
   stories: [
-    '../src/**/**/introduction.stories.mdx',
-    '../src/**/*.stories.@(ts|tsx|js|jsx)'
+    '../src/**/*.stories.@(ts|tsx|js|jsx)',
   ],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
-  framework: '@storybook/react',
+  addons: [
+    '@storybook/addon-links',
+  ],
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
+  },
+  docs: {
+    autodocs: 'tag',
+  },
   webpackFinal: async (config) => {
     // Aliases
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@tokens': path.resolve(__dirname, '../src/tokens/index.ts'),
+      '@tokens':     path.resolve(__dirname, '../src/tokens/index.ts'),
       '@components': path.resolve(__dirname, '../src/components'),
-      '@icons': path.resolve(__dirname, '../src/icons'),
+      '@icons':      path.resolve(__dirname, '../src/icons'),
     };
 
-    // Fix 1: processa .mjs como módulo JS normal
+    // Transpile TypeScript and JSX
     config.module.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: 'javascript/auto',
+      test: /\.(ts|tsx|js|jsx)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            '@babel/preset-env',
+            ['@babel/preset-react', { runtime: 'automatic' }],
+            '@babel/preset-typescript',
+          ],
+          plugins: ['@babel/plugin-proposal-optional-chaining'],
+        },
+      },
     });
 
-    // Fix 2: transpila motion e framer-motion com babel para Webpack 4
-    // Webpack 4 não entende optional chaining (?.) nativo nos node_modules
+    // Transpila motion e framer-motion com babel (optional chaining)
     config.module.rules.push({
       test: /\.(js|mjs)$/,
       include: [

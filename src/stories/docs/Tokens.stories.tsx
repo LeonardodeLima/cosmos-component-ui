@@ -1,11 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { primitive } from '../tokens/primitive'
-import { colors } from '../tokens/colors'
-import { spacing } from '../tokens/spacing'
-import { typography } from '../tokens/typography'
-import { radius } from '../tokens/radius'
-import { shadow } from '../tokens/shadow'
-import { motion } from '../tokens/motion'
+import { primitive, colors, spacing, typography, radius, shadow, motion } from '../../tokens'
 
 
 const styles = {

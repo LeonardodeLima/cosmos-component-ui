@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import * as Icons from '../icons'
+import * as Icons from '../../icons'
 
 interface IconEntry {
   name: string

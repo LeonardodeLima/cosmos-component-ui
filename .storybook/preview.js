@@ -11,6 +11,11 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: {
+      order: ['Welcome', 'Guias', 'Components'],
+    },
+  },
 }
 
 export const decorators = [
