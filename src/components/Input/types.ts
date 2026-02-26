@@ -7,6 +7,8 @@ export interface InputProps {
   message?: string;
   success?: boolean;
   disabled?: boolean;
+  required?: boolean;
   placeholder?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  "aria-label"?: string;
 }

@@ -6,4 +6,6 @@ export interface ButtonProps {
   size?: "small" | "medium" | "large";
   variant?: "default" | "glitch";
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  "aria-label"?: string;
+  "aria-pressed"?: boolean | "mixed";
 }

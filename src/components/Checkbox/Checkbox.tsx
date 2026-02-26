@@ -17,6 +17,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   disabled,
   variant = "default",
   onChange,
+  "aria-label": ariaLabel,
   ...props
 }) => {
   const autoId = useId();
@@ -31,10 +32,11 @@ const Checkbox: React.FC<CheckboxProps> = ({
         defaultChecked={defaultChecked}
         disabled={disabled}
         onChange={onChange}
+        aria-label={!label ? ariaLabel : undefined}
         {...props}
       />
 
-      <CheckboxBox variant={variant} disabled={disabled}>
+      <CheckboxBox variant={variant} disabled={disabled} aria-hidden="true">
         {variant === "glitch" ? (
           <GlitchMark />
         ) : (

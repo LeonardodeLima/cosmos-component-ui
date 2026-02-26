@@ -8,4 +8,5 @@ export interface CheckboxProps {
   disabled?: boolean;
   variant?: "default" | "glitch";
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  "aria-label"?: string;
 }

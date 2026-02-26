@@ -9,6 +9,8 @@ const Button: React.FC<ButtonProps> = ({
   size,
   variant = "default",
   onClick,
+  "aria-label": ariaLabel,
+  "aria-pressed": ariaPressed,
   ...props
 }) => {
   return (
@@ -20,6 +22,8 @@ const Button: React.FC<ButtonProps> = ({
       size={size}
       variant={variant}
       data-text={variant === "glitch" ? text : undefined}
+      aria-label={ariaLabel}
+      aria-pressed={ariaPressed}
       {...props}
     >
       {variant === "glitch" ? <BtnText>{text}</BtnText> : text}
